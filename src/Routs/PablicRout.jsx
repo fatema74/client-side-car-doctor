@@ -6,6 +6,9 @@ import SignIn from "../Pages/Login/SignIn";
 import Checkout from "../Pages/Checkout/Checkout";
 import Booking from "../Pages/Checkout/Booking";
 import PrivetRout from "./PrivetRout";
+import About from "../Pages/Home/About";
+import Service from "../Pages/Home/Service";
+import Contacts from '../Pages/Home/Contacts';
 
 
 
@@ -43,6 +46,18 @@ const PablicRout = createBrowserRouter([
             <Booking></Booking>
           </PrivetRout>
         ),
+      },
+      {
+        path: '/about',
+        element: <About></About>,
+      },
+      {
+        path: '/blog',
+        element: <Service></Service>,
+      },
+      {
+        path: '/contact',
+        element: <Contacts></Contacts>,
       },
     ],
   },
