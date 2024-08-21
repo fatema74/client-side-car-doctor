@@ -37,7 +37,9 @@ const PablicRout = createBrowserRouter([
           </PrivetRout>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/servicess/${params.id}`),
+          fetch(
+            `https://car-doctor-server-wine-tau.vercel.app/servicess/${params.id}`
+          ),
       },
       {
         path: '/booking',

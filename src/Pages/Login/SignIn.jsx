@@ -2,12 +2,15 @@ import { Link } from 'react-router-dom';
 import img from '../../img/images/login/login.svg';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { useContext } from 'react';
-import { AuthCotext } from '../../AuthProvider/AuthProvider';
+import UseAuth from '../../Hook/UseAuth';
+// import { useContext } from 'react';
+// import { AuthCotext } from '../../AuthProvider/AuthProvider';
 
 
 const SignIn = () => {
-  const { createUser } = useContext(AuthCotext);
+  const { createUser } = UseAuth();
+
+  // const { createUser } = useContext(AuthCotext);
 
   const handleSingin = event => {
     event.preventDefault();

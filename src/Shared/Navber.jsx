@@ -2,12 +2,14 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../img/logo.svg";
 import { FaBagShopping} from 'react-icons/fa6';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useContext } from "react";
-import { AuthCotext } from "../AuthProvider/AuthProvider";
+import UseAuth from "../Hook/UseAuth";
+// import { useContext } from "react";
+// import { AuthCotext } from "../AuthProvider/AuthProvider";
 
 const Navber = () => {
+  const { user, logOut } = UseAuth();
 
-  const { user, logOut } = useContext(AuthCotext);
+  // const { user, logOut } = useContext(AuthCotext);
 
   const handleLogOut = () => {
     logOut()

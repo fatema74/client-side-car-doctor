@@ -38,17 +38,26 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         
         axios
-          .post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+          .post(
+            'https://car-doctor-server-wine-tau.vercel.app/jwt',
+            loggedUser,
+            { withCredentials: true }
+          )
           .then(res => {
             console.log('token respons', res.data);
           });
       } else {
-        axios.post('http://localhost:5000/jwt', loggedUser, {
-          withCredentials: true
-        })
+        axios
+          .post(
+            'https://car-doctor-server-wine-tau.vercel.app/jwt',
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then(res => {
-          console.log(res.data);
-        })
+            console.log(res.data);
+          });
       }
     })
     return () => {

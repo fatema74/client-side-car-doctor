@@ -2,13 +2,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../img/images/login/login.svg'
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { useContext } from 'react';
-import { AuthCotext } from '../../AuthProvider/AuthProvider';
+// import { useContext } from 'react';
+// import { AuthCotext } from '../../AuthProvider/AuthProvider';
 import axios from 'axios';
+import UseAuth from '../../Hook/UseAuth';
 
 
 const Login = () => {
-  const { signIn } = useContext(AuthCotext);
+  const { signIn } = UseAuth();
+  // const { signIn } = useContext(AuthCotext);
 
   const location = useLocation();
   const navigate = useNavigate()
@@ -27,13 +29,16 @@ const Login = () => {
         const user = { email };
         
         // get access token
-        axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
+        axios
+          .post('https://car-doctor-server-wine-tau.vercel.app/jwt', user, {
+            withCredentials: true,
+          })
           .then(res => {
             console.log(res.data);
-            if(res.data.success) {
-              navigate(location?.state ? location?.state : '/')
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : '/');
             }
-        })
+          });
 
       })
     .catch(error => console.log(error))

@@ -29,12 +29,12 @@ const Checkout = () => {
     }
     console.log(order);
 
-    fetch('http://localhost:5000/booking', {
+    fetch('https://car-doctor-server-wine-tau.vercel.app/booking', {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
       },
-      body: JSON.stringify(order)
+      body: JSON.stringify(order),
     })
       .then(res => res.json())
       .then(date => {

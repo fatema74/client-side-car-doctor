@@ -1,39 +1,43 @@
-import { useContext, useEffect, useState } from 'react';
-import { AuthCotext } from '../../AuthProvider/AuthProvider';
+import { useEffect, useState } from 'react';
+// import { AuthCotext } from '../../AuthProvider/AuthProvider';
 import BookingRow from './BookingRow';
-import axios from 'axios';
+// import axios from 'axios';
+import UseAxiosSecure from '../../Hook/UseAxiosSecure';
+import UseAuth from '../../Hook/UseAuth'
 
 
 
 const Booking = () => {
-  const { user } = useContext(AuthCotext);
+  const axiosSecure = UseAxiosSecure();
+  const {user} = UseAuth()
+  // const { user } = useContext(AuthCotext);
 
   const [booking, setBooking] = useState([]);
 
-  const url = `http://localhost:5000/booking?email=${user?.email}`;
+  const url = `/booking?email=${user?.email}`;
 
   useEffect(() => {
 
-    axios.get(url, {withCredentials: true})
-      .then(res => {
-      setBooking(res.data)
-    })
-
-
-
-      
-      fetch(url, {credentials: 'include'})
-        .then(res => res.json())
-        .then(data => setBooking(data));
-
+    // axios.get(url, {withCredentials: true})
+    //   .then(res => {
+    //   setBooking(res.data)
+    // })
     
-  }, [url]);
+    
+      // fetch(url, {credentials: 'include'})
+      //   .then(res => res.json())
+    //   .then(data => setBooking(data));
+
+    axiosSecure.get(url)
+      .then(res => setBooking(res.data));
+    
+  }, [url, axiosSecure]);
 
   const handleDelete = id => {
     const proceed = confirm('Are you sure you want to delete');
 
     if (proceed) {
-      fetch(`http://localhost:5000/booking/${id}`, {
+      fetch(`https://car-doctor-server-wine-tau.vercel.app/booking/${id}`, {
         method: 'DELETE',
       })
         .then(res => res.json())
@@ -50,7 +54,7 @@ const Booking = () => {
 
   
   const handleConfirm = id => {
-    fetch(`http://localhost:5000/booking/${id}`, {
+    fetch(`https://car-doctor-server-wine-tau.vercel.app/booking/${id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
